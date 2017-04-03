@@ -1,5 +1,5 @@
 let s:coq_running=0
-let s:current_dir=expand("<sfile>:p:h") 
+let s:current_dir=expand("<sfile>:p:h")
 
 if !exists('coquille_auto_move')
     let g:coquille_auto_move="false"
@@ -10,7 +10,7 @@ call vimbufsync#init()
 
 py import sys, vim
 py if not vim.eval("s:current_dir") in sys.path:
-\    sys.path.append(vim.eval("s:current_dir")) 
+\    sys.path.append(vim.eval("s:current_dir"))
 py import coquille
 
 function! coquille#ShowPanels()
@@ -53,6 +53,17 @@ function! coquille#FNMapping()
     imap <buffer> <silent> <F2> <C-\><C-o>:CoqUndo<CR>
     imap <buffer> <silent> <F3> <C-\><C-o>:CoqNext<CR>
     imap <buffer> <silent> <F4> <C-\><C-o>:CoqToCursor<CR>
+endfunction
+
+function! coquille#leaderNumMapping()
+	"" --- Bindings using <leader> + arrow keys
+	map <buffer> <silent> <leader>1 :CoqUndo<CR>
+	map <buffer> <silent> <leader>2 :CoqNext<CR>
+	map <buffer> <silent> <leader>3 :CoqToCursor<CR>
+
+	imap <buffer> <silent> <leader>1 <C-\><C-o>:CoqUndo<CR>
+	imap <buffer> <silent> <leader>2 <C-\><C-o>:CoqNext<CR>
+	imap <buffer> <silent> <leader>3 <C-\><C-o>:CoqToCursor<CR>
 endfunction
 
 function! coquille#CoqideMapping()
